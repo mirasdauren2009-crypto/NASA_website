@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Экзопланетный калькулятор</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Экзопланетный калькулятор</h1>
+    <p>Введите параметры своей планеты, затем загрузите кривую блеска (.fits)</p>
+  </header>
+
+  <main class="container">
+    <!-- Левая колонка -->
+    <section class="left-col">
+      <h2>Анкета планеты</h2>
+      <form id="planet-form">
+        <div class="question">
+          <p>Время прохождения транзита (koi_time0bk, дни)?</p>
+          <div class="input-row">
+            <input id="koi_time0bk" name="koi_time0bk" required placeholder="Значение">
+            <input id="koi_time0bk_err2" name="koi_time0bk_err2" placeholder="− погрешность">
+            <input id="koi_time0bk_err1" name="koi_time0bk_err1" placeholder="+ погрешность">
+          </div>
+        </div>
+
+        <div class="question">
+          <p>Орбитальный период (koi_period, дни)?</p>
+          <div class="input-row">
+            <input id="koi_period" name="koi_period" required placeholder="Значение">
+            <input id="koi_period_err2" name="koi_period_err2" placeholder="− погрешность">
+            <input id="koi_period_err1" name="koi_period_err1" placeholder="+ погрешность">
+          </div>
+        </div>
+
+        <div class="question">
+          <p>Длительность транзита (koi_duration, часы)?</p>
+          <div class="input-row">
+            <input id="koi_duration" name="koi_duration" required placeholder="Значение">
+            <input id="koi_duration_err2" name="koi_duration_err2" placeholder="− погрешность">
+            <input id="koi_duration_err1" name="koi_duration_err1" placeholder="+ погрешность">
+          </div>
+        </div>
+
+        <div class="question">
+          <p>Радиус звезды (koi_srad, в радиусах Солнца)?</p>
+          <div class="input-row">
+            <input id="koi_srad" name="koi_srad" required placeholder="Значение">
+            <input id="koi_srad_err2" name="koi_srad_err2" placeholder="− погрешность">
+            <input id="koi_srad_err1" name="koi_srad_err1" placeholder="+ погрешность">
+          </div>
+        </div>
+
+        <div class="question">
+          <p>Радиус планеты (koi_prad, в радиусах Земли)?</p>
+          <div class="input-row">
+            <input id="koi_prad" name="koi_prad" required placeholder="Значение">
+            <input id="koi_prad_err2" name="koi_prad_err2" placeholder="− погрешность">
+            <input id="koi_prad_err1" name="koi_prad_err1" placeholder="+ погрешность">
+          </div>
+        </div>
+
+        <div class="question">
+          <p>Температура равновесия планеты (koi_teq, K)?</p>
+          <div class="input-row">
+            <input id="koi_teq" name="koi_teq" required placeholder="Значение">
+            <input id="koi_teq_err2" name="koi_teq_err2" placeholder="− погрешность">
+            <input id="koi_teq_err1" name="koi_teq_err1" placeholder="+ погрешность">
+          </div>
+        </div>
+
+        <div class="question">
+          <p>Глубина транзита (koi_depth, ppm)?</p>
+          <div class="input-row">
+            <input id="koi_depth" name="koi_depth" required placeholder="Значение">
+            <input id="koi_depth_err2" name="koi_depth_err2" placeholder="− погрешность">
+            <input id="koi_depth_err1" name="koi_depth_err1" placeholder="+ погрешность">
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <!-- Правая колонка -->
+    <section class="right-col">
+          <h3>Light Curve</h3>
+          <div class="chart-wrap">
+            <canvas id="lcChart"></canvas>
+          </div>
+          <p id="telescope-status">Ожидание загрузки...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- Нижняя панель -->
+  <section class="bottom-panel">
+    <div class="upload-block">
+      <p>Загрузите кривую блеска (light curve) в формате .fits или укажите ссылку:</p>
+      
+      <label class="file-drop" for="file-input">
+        <span>📂 Перетащите сюда файл или нажмите, чтобы выбрать</span>
+        <input type="file" id="file-input" accept=".fits" hidden>
+      </label>
+    
+      <div class="or-sep">или</div>
+    
+      <input type="url" id="fits-url" name="fits-url" placeholder="Вставьте ссылку на FITS файл">
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" form="planet-form">Отправить данные</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Экзопланетный проект</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
